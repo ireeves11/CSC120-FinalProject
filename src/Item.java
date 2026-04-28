@@ -1,8 +1,8 @@
 public class Item{
     
-    private String name;
-    private boolean pickupable;
-    private Room location;
+    protected String name;
+    protected boolean pickupable;
+    protected Room location;
 
     public Item(String name, boolean pickUp, Room location){
         this.name = name;
@@ -33,5 +33,10 @@ public class Item{
 
     public void use(){
         System.out.println("How, exactly, do you 'use' a(n) " + this.getName());
+    }
+
+    @Override
+    public String toString(){
+        return "This is a " + this.name;
     }
 }

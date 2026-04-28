@@ -4,7 +4,7 @@ public class Ship {
     
     private int shipHealth;
     private ArrayList <Room> rooms;
-    private ArrayList <LivingThing> passengers;
+    protected ArrayList <LivingThing> passengers;
 
     public Ship(){
         this.shipHealth = 10;

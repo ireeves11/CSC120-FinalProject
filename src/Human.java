@@ -2,37 +2,51 @@ import java.util.ArrayList;
 
 public class Human extends LivingThing{
     
-    private ArrayList<Item> inventory;
-    private Item currentItem;
+    protected ArrayList<Item> inventory;
+    protected boolean isPuppet; //may not be necessary?
+    protected String job;
 
     public Human(String name, Room room){
-        super(name,room);
+        super(name,room, 1);
         this.inventory = new ArrayList();
-        currentItem = null;
+        this.isPuppet = false;
     }
 
-    public void die(){
-        this.isAlive = false;
+    public boolean puppetStatus(){ //
+        return this.isPuppet;
     }
 
-    public void grabItem(Item x){
-        if (x.canPickUp()){
-            this.inventory.add(x);
-        }
-        else{
-            throw new RuntimeException("You can't pick up this object");
-        }
+    public void becomePuppet(){ //
+        this.isPuppet = true;
+    }
+
+    public void stopUsingPuppet(){ //
+        this.isPuppet = false;
     }
 
     public ArrayList<Item> getInventory(){
         return this.inventory;
     }
 
-    public Item getCurrentItem(){
-        return this.currentItem;
-    }
-
     public void use(Item x){
 
+    }
+
+    public void dropItem(Item i){
+        this.inventory.remove(i);
+        i.setLocation(this.currentRoom);
+    }
+
+    @Override
+    public String toString(){
+        return "You see " + this.name + " they are doing whatever it is they do...";
+    }
+
+    public String darkToString(){
+        return "You think you see " + this.name + " but you can't see them very well";
+    }
+
+    public String deadToString(){
+        return "You see " + this.name + "'s body being held up. Blood is splattered on their clothes and they start at you with empty eyes.";
     }
 }
