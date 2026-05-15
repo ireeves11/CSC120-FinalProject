@@ -3,7 +3,7 @@ public class Gun extends Item{
     private int bullets;
 
     public Gun(Room room){
-        super("Gun", true, room);
+        super("Gun");
         this.bullets = 6;
     }
 

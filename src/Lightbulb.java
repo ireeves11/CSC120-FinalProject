@@ -3,7 +3,7 @@ public class Lightbulb extends Item{
     private boolean isBroken;
 
     public Lightbulb(Room room){
-        super("Lightbulb", true, room);
+        super("Lightbulb");
         this.isBroken = false;
     }
 

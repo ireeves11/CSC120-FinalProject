@@ -2,14 +2,14 @@ public class LivingThing{
 
     protected String name;
     protected boolean isAlive;
-    protected Room currentRoom;
-    protected int health;
 
-    public LivingThing(String name, Room room, int health){
+    public LivingThing(String name){
         this.name = name;
         this.isAlive = true;
-        this.currentRoom = room;
-        this.health = health;
+    }
+
+    public void rename(String name){
+        this.name = name;
     }
 
     public String getName(){
@@ -20,34 +20,25 @@ public class LivingThing{
         return this.isAlive;
     }
 
-    public Room getCurrentRoom(){
-        return this.currentRoom;
-    }
-
     public void die(){
         this.isAlive = false;
     }
 
-    public int getHealth(){
-        return this.health;
+    public void kill(LivingThing a){
+        a.die();
     }
 
-    public void getHit(){
-        this.health -= 1;
-        if(this.health == 0){
-            this.die();
-        }
-    }
-
-    public void goTo(Room room){
-        if(this.currentRoom.getAdjacentRooms().contains(room)){
-            this.currentRoom = room;
-        }
-        else if(this.currentRoom.equals(room)){
-            throw new RuntimeException("You're already in that room!");
+    public void goTo(Room a, Room b){
+        if(a.getOccupants().contains(this)){
+            a.exit(this);
+            b.enter(this);
         }
         else{
-            throw new RuntimeException("That's not a room you can reach right now");
+            throw new RuntimeException("What even happened bro");
         }
+    }
+
+    public void talk(){
+        System.out.println("SCREEEEEEEEEEEETCH");
     }
 }

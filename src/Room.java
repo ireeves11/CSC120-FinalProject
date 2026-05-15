@@ -3,18 +3,22 @@ import java.util.ArrayList;
 public class Room {
     
     private ArrayList <LivingThing> occupants;
+    private ArrayList <Item> things;
     private boolean brokenLightbulbs;
     private String name;
+    private String description;
     private ArrayList <Room> adjacentRooms;
 
     /**
      * defaults room constructor (empty room, lights on, no broken lightbulbs)
      * @param name name of the room
      */
-    public Room(String name){
+    public Room(String name, String description){
         this.occupants = new ArrayList();
         this.brokenLightbulbs = false;
         this.name = name;
+        this.things = new ArrayList();
+        this.description = description;
         this.adjacentRooms = new ArrayList();
     }
 
@@ -38,10 +42,6 @@ public class Room {
         this.occupants.add(a);
     }
 
-    public String getName(){
-        return this.name;
-    }
-
     /**
      * has a living thing leave a room and removed as an occupant
      * @param a living thing leaving the room
@@ -54,6 +54,34 @@ public class Room {
         return this.brokenLightbulbs;
     }
 
+    public String getName(){
+        return this.name;
+    }
+    
+    public ArrayList<Item> getItems(){
+        return this.things;
+    }
+
+    public ArrayList<LivingThing> getOccupants(){
+        return this.occupants;
+    }
+
+    public void addItem(Item a){
+        this.things.add(a);
+    }
+
+    public void removeItem(Item a){
+        this.things.remove(a);
+    }
+
+    public ArrayList<Room> getAdjacentRooms(){
+        return this.adjacentRooms;
+    }
+
+    public void addAdjacentRooms(Room a){
+        this.adjacentRooms.add(a);
+    }
+
     //need to make a lightbulb object and add it here
     public void fixLightbulbs(){
         if (this.brokenLightbulbs){
@@ -63,15 +91,11 @@ public class Room {
         }
     }
 
-    public ArrayList<Room> getAdjacentRooms(){
-        return this.adjacentRooms;
-    }
-
     public String toString(){
-        return "You are in the " + name;
+        return "You are in the " + this.name + ". " + this.description + " This room is adjacent to the " + this.adjacentRooms + "rooms\nYou can clearly see the following things in the room:\n" + this.things + " You know the following...people are in the room as well:\n" + this.occupants ;
     }
 
     public String darkToString(){
-        return "You know that you should be in the " + name + ", but you can't see anything";
+        return "You know that you should be in the " + this.name + ", but you can't see anything";
     }
 }

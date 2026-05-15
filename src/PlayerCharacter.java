@@ -1,31 +1,45 @@
-public class PlayerCharacter extends Human{
-    
-    public PlayerCharacter(String name, Room room){
-        super(name, room);
+import java.util.ArrayList;
+
+public class PlayerCharacter extends LivingThing{
+
+    private ArrayList<Item> inventory;
+
+    public PlayerCharacter(String name){
+        super(name);
     }
 
-    public void grabItem(Item x){
-        if (x.canPickUp()){
-            this.inventory.add(x);
+    public void pickUp(Item a){
+        if(!inventory.contains(a)){
+            inventory.add(a);
         }
         else{
-            throw new RuntimeException("You can't pick up this object");
+            throw new RuntimeException("You already have this in your inventory!");
         }
     }
 
-    public void perceive(Human a){
-        if(!this.currentRoom.getBrokenLightbulbs()){  //add flashlight option here too
-
-        }else{
-            System.out.println(a.darkToString());
+    public void putDown(Item a){
+        if(inventory.contains(a)){
+            inventory.remove(a);
+        }
+        else{
+            throw new RuntimeException("This item isn't in your inventory anyway!");
         }
     }
 
-    public void perceive(Room a){
-        if(!this.currentRoom.getBrokenLightbulbs()){ //also add flashlight option here too
-            
-        }else{
-            System.out.println(a.darkToString());
+    public void use(Item a){
+        if(this.inventory.contains(a)){
+            a.use();
         }
+        else{
+            throw new RuntimeException("That item isn't in your inventory, so how are you supposed to use it?");
+        }
+    }
+    
+    public void lookAround(Room a){
+        System.out.print(a);
+    }
+
+    public ArrayList<Item> getInventory(){
+        return this.inventory;
     }
 }

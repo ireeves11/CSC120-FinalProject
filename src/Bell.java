@@ -1,7 +1,7 @@
 public class Bell extends Item{
     
     public Bell(Room room){
-        super("Bell", true, room);
+        super("Bell");
     }
 
     public void ring(Alien a){

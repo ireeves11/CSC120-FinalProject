@@ -1,7 +1,7 @@
 public class Batteries extends Item{
     
     public Batteries(Room room){
-        super("AA Batteries", true, room);
+        super("AA Batteries");
     }
 
     @Override

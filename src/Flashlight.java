@@ -1,12 +1,10 @@
 public class Flashlight extends Item{
     
     private boolean isOn;
-    private int batteryLife;
 
-    public Flashlight(Room room){
-        super("Flashlight", true, room);
+    public Flashlight(){
+        super("Flashlight");
         this.isOn = false;
-        this.batteryLife = 15;
     }
 
     @Override
@@ -14,17 +12,9 @@ public class Flashlight extends Item{
         if(this.isOn){
             throw new RuntimeException("You're already using your the Flashlight");
         } 
-        else if(this.batteryLife == 0){
-            throw new RuntimeException("You're Flashlight is dead! It needs new batteries");
-        }
         else{
             this.isOn = true;
         }
-    }
-
-    public void replaceBatteries(Batteries doubleA){
-        this.batteryLife = 15;
-        doubleA.use();
     }
 
     public void turnOff(){

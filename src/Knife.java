@@ -1,15 +1,15 @@
 public class Knife extends Item{
     
-    public Knife(Room room){
-        super("Knife", true, room);
+    public Knife(){
+        super("Knife");
     }
 
-    public void slash(){
-        System.out.println("Woosh!");
+    public void use(LivingThing a){
+        a.die();
     }
 
-    public void slash(LivingThing a){
-        a.getHit();
+    public void use(){
+        System.out.println("Be careful with that thing!");
     }
 
     @Override
